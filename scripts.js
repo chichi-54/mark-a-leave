@@ -78,52 +78,45 @@
 
     const allFragmentEls = document.querySelectorAll('.hidden-fragment');
 
-// ── MUSIC ──
-const bgMusic = document.getElementById('bg-music');
-const musicToggle = document.getElementById('music-toggle');
-let musicPlaying = true;
+    // ── MUSIC ──
+    let musicPlaying = true;
+    bgMusic.volume = 0.12;
 
-// Set volume low so it's atmospheric, not distracting
-bgMusic.volume = 0.12;
+    // Start music on first user interaction (required by browsers)
+    document.addEventListener('click', function startMusic() {
+        if (bgMusic.paused) {
+            bgMusic.play().catch(() => {});
+        }
+    }, { once: true });
 
-// Start music on first user interaction (required by browsers)
-document.addEventListener('click', function startMusic() {
-    if (bgMusic.paused) {
-        bgMusic.play().catch((err) => {
-            console.log('Music playback failed on first click. Will retry.', err);
-        });
-    }
-}, { once: true });
+    // Also try on keypress (some users navigate with keyboard first)
+    document.addEventListener('keydown', function startMusicKey() {
+        if (bgMusic.paused) {
+            bgMusic.play().catch(() => {});
+        }
+    }, { once: true });
 
-// Also try on keypress (some users navigate with keyboard first)
-document.addEventListener('keydown', function startMusicKey() {
-    if (bgMusic.paused) {
-        bgMusic.play().catch(() => {});
-    }
-}, { once: true });
+    // Keep music alive when tab is switched
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && musicPlaying && bgMusic.paused) {
+            bgMusic.play().catch(() => {});
+        }
+    });
 
-// Keep music alive across page interactions
-// Some browsers pause audio during certain events; this resumes it
-document.addEventListener('visibilitychange', () => {
-    if (!document.hidden && musicPlaying && bgMusic.paused) {
-        bgMusic.play().catch(() => {});
-    }
-});
-
-// Toggle button
-musicToggle.addEventListener('click', function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    if (musicPlaying) {
-        bgMusic.pause();
-        musicToggle.textContent = '♪ Music: Off';
-        musicPlaying = false;
-    } else {
-        bgMusic.play().catch(() => {});
-        musicToggle.textContent = '♪ Music: On';
-        musicPlaying = true;
-    }
-});
+    // Toggle button
+    musicToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        if (musicPlaying) {
+            bgMusic.pause();
+            musicToggle.textContent = '♪ Music: Off';
+            musicPlaying = false;
+        } else {
+            bgMusic.play().catch(() => {});
+            musicToggle.textContent = '♪ Music: On';
+            musicPlaying = true;
+        }
+    });
 
     // ── FADE HELPERS ──
     async function fadeToBlack(duration = 900) {
@@ -226,6 +219,7 @@ musicToggle.addEventListener('click', function(e) {
         await fadeFromBlack(1050);
         setTimeout(() => advanceAct2(), 450);
         state.isTransitioning = false;
+        if (musicPlaying && bgMusic.paused) { bgMusic.play().catch(() => {}); }
     }
 
     // ── ACT II ──
@@ -256,6 +250,7 @@ musicToggle.addEventListener('click', function(e) {
         await fadeFromBlack(1100);
         setTimeout(() => advanceAct3(), 400);
         state.isTransitioning = false;
+        if (musicPlaying && bgMusic.paused) { bgMusic.play().catch(() => {}); }
     }
 
     // ── ACT III ──
@@ -316,6 +311,7 @@ musicToggle.addEventListener('click', function(e) {
         await fadeFromBlack(1100);
         advanceAct4Auto();
         state.isTransitioning = false;
+        if (musicPlaying && bgMusic.paused) { bgMusic.play().catch(() => {}); }
     }
     async function advanceAct4Auto() {
         for (let i = 0; i < totalAct4Elements; i++) {
@@ -330,12 +326,11 @@ musicToggle.addEventListener('click', function(e) {
         }
     }
 
-    // ── ACT V (FIXED: clinic background + dark text) ──
+    // ── ACT V ──
     async function transitionToAct5() {
         state.isTransitioning = true;
         resolutionText.classList.remove('visible');
         await fadeToBlack(1000);
-        // Light parchment background, no vignette, no atmosphere, no ink texture
         setBackground('#eae7e1', 0, 0, 0);
         activatePhase(phaseAct5);
         contradictionText.classList.remove('visible');
@@ -346,6 +341,7 @@ musicToggle.addEventListener('click', function(e) {
         setTimeout(() => contradictionSub.classList.add('visible'), 1400);
         setTimeout(() => { if (state.currentPhase === 'phase-act5' && !state.isTransitioning) transitionToEpilogue(); }, 4500);
         state.isTransitioning = false;
+        if (musicPlaying && bgMusic.paused) { bgMusic.play().catch(() => {}); }
     }
 
     // ── EPILOGUE ──
@@ -371,6 +367,7 @@ musicToggle.addEventListener('click', function(e) {
         setTimeout(() => searchLabel.classList.add('visible'), 300);
         setTimeout(() => { searchWrapper.classList.add('visible'); searchInput.focus(); }, 900);
         state.isTransitioning = false;
+        if (musicPlaying && bgMusic.paused) { bgMusic.play().catch(() => {}); }
     }
 
     function handleSearch(query) {
@@ -502,21 +499,21 @@ musicToggle.addEventListener('click', function(e) {
 
     function hideArtifactDetail() { artifactDetailOverlay.classList.remove('visible'); }
     function openMuseum() {
-    museumPhase.style.display = '';
-    renderMuseum();
-    museumPhase.classList.add('active');
-    state.museumOpen = true;
-    museumPhase.scrollTop = 0;
+        museumPhase.style.display = '';
+        renderMuseum();
+        museumPhase.classList.add('active');
+        state.museumOpen = true;
+        museumPhase.scrollTop = 0;
     }   
     function closeMuseum() {
-    museumPhase.classList.remove('active');
-    museumPhase.style.display = 'none';
-    state.museumOpen = false;
-    // Force a tiny delay then restore display for next open
-    setTimeout(() => {
-        museumPhase.style.display = '';
-    }, 100);
+        museumPhase.classList.remove('active');
+        museumPhase.style.display = 'none';
+        state.museumOpen = false;
+        setTimeout(() => {
+            museumPhase.style.display = '';
+        }, 100);
     }
+
     // ── EVENT LISTENERS ──
     document.addEventListener('click', function(e) {
         if (e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT' || e.target.closest('button') || e.target.closest('input') || e.target.closest('.museum-artifact') || e.target.closest('#artifact-detail-overlay') || e.target.closest('.hidden-fragment') || e.target.closest('#museum-link') || e.target.closest('#return-from-museum')) return;
