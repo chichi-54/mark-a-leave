@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>SHE IS REMEMBERED</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ═══════════ ATMOSPHERIC LAYERS ═══════════ -->
+    <div id="atmosphere"></div>
+    <div id="ink-texture"></div>
+    <div id="vignette"></div>
+    <div id="fade-overlay"></div>
+
+    <!-- ═══════════ HIDDEN FRAGMENTS ═══════════ -->
+    <div class="hidden-fragment" id="fragment-letter" style="top:18%;right:8%;" data-fragment="folded-letter">
+        <span class="fragment-icon">✉️</span>
+        <span class="fragment-tooltip">folded letter</span>
+    </div>
+    <div class="hidden-fragment" id="fragment-moth" style="top:55%;left:6%;" data-fragment="moth">
+        <span class="fragment-icon">🦋</span>
+        <span class="fragment-tooltip">a moth circling</span>
+    </div>
+    <div class="hidden-fragment" id="fragment-feather" style="top:32%;right:12%;" data-fragment="bird-feather">
+        <span class="fragment-icon">🪶</span>
+        <span class="fragment-tooltip">bird feather</span>
+    </div>
+    <div class="hidden-fragment" id="fragment-flower" style="top:70%;left:10%;" data-fragment="pressed-flower">
+        <span class="fragment-icon">🥀</span>
+        <span class="fragment-tooltip">pressed flower</span>
+    </div>
+    <div class="hidden-fragment" id="fragment-candle" style="top:45%;right:18%;" data-fragment="candle-stub">
+        <span class="fragment-icon">🕯️</span>
+        <span class="fragment-tooltip">candle stub</span>
+    </div>
+
+    <!-- ═══════════ COLLECTION TOAST ═══════════ -->
+    <div id="collection-toast"></div>
+
+    <!-- ═══════════ MUSIC TOGGLE ═══════════ -->
+    <button class="music-toggle" id="music-toggle">♪ Music: On</button>
+
+    <!-- ═══════════ BACKGROUND MUSIC ═══════════ -->
+<audio id="bg-music" loop preload="auto" volume="0.15">
+    <source src="bellas-lullaby.mp3" type="audio/mpeg">
+    <source src="bellas-lullaby.ogg" type="audio/ogg">
+</audio>
+
+    <!-- ═══════════ MAIN CONTAINER ═══════════ -->
+    <div id="main-container">
+
+        <!-- ACT I — THE LIFE SHE ESCAPES -->
+        <div class="phase" id="phase-act1">
+            <div class="narrative-line" data-index="0">She was born in Villon, in the year 1691.</div>
+            <div class="narrative-line" data-index="1">A betrothal arranged before she could speak her own desires.</div>
+            <div class="narrative-line" data-index="2">Her father carved her a wooden ring from ash.</div>
+            <div class="narrative-line emphasis" data-index="3">Seven freckles crossed her nose. Estele said they were signs.</div>
+            <div class="narrative-line" data-index="4">The weight of expectation pressed against her ribs each morning.</div>
+            <div class="narrative-line" data-index="5">But the old woman taught her to pray to the gods that come after dark.</div>
+            <div class="narrative-line emphasis" data-index="6">She was seen by everyone in Villon — and known by no one.</div>
+            <div class="narrative-line" data-index="7">The wedding date drew closer like a closing door.</div>
+            <div class="narrative-line" data-index="8">And so, on the night before her betrothal ceremony…</div>
+            <div class="narrative-line emphasis" data-index="9">She ran into the dark. And the dark answered.</div>
+            <div class="continue-hint" id="hint-act1">click or press any key to continue</div>
+        </div>
+
+        <!-- ACT II — THE NIGHT SHE RUNS -->
+        <div class="phase" id="phase-act2">
+            <div class="narrative-line" data-index="0">The night swallowed her whole.</div>
+            <div class="narrative-line" data-index="1">Wind tore through the trees. The world blurred past her.</div>
+            <div class="narrative-line" data-index="2">She did not know where she was going — only what she was leaving.</div>
+            <div class="narrative-line emphasis" data-index="3">And then the darkness shifted.</div>
+            <div class="narrative-line" data-index="4">Not a sound. Not a movement. A presence.</div>
+            <div class="dialogue-line luc" data-index="5">&ldquo;You are running from a life you never chose.&rdquo;</div>
+            <div class="dialogue-line addie" data-index="6">&ldquo;Who are you?&rdquo;</div>
+            <div class="dialogue-line luc" data-index="7">&ldquo;Someone who sees you. Truly sees you.&rdquo;</div>
+            <div class="dialogue-line luc" data-index="8">&ldquo;No one will hold your life for you. But I can make sure no one ever claims it either.&rdquo;</div>
+            <div class="dialogue-line addie" data-index="9">&ldquo;What does that mean?&rdquo;</div>
+            <div class="dialogue-line luc" data-index="10">&ldquo;Freedom. At a cost you will not understand until it is too late.&rdquo;</div>
+            <div class="dialogue-line addie" data-index="11">&ldquo;I don&rsquo;t care. I cannot go back.&rdquo;</div>
+            <div class="dialogue-line luc" data-index="12">&ldquo;Then it is done.&rdquo;</div>
+            <div class="continue-hint" id="hint-act2">click or press any key to continue</div>
+        </div>
+
+        <!-- ACT III — THE CURSE + INTERACTIVE DIALOGUE -->
+        <div class="phase" id="phase-act3">
+            <div class="narrative-line" data-index="0">At first, she did not notice.</div>
+            <div class="narrative-line" data-index="1">A shopkeeper who had just sold her bread — did not know her face.</div>
+            <div class="narrative-line" data-index="2">A woman she had laughed with moments before — blank eyes.</div>
+            <div class="narrative-line emphasis" data-index="3">She left no imprint. No trace. No memory.</div>
+            <div class="narrative-line" data-index="4">She tried to throw away the wooden ring. It came back.</div>
+            <div class="narrative-line" data-index="5">Days became years. Years became decades.</div>
+            <div class="narrative-line emphasis" data-index="6">She was the most witnessed person alive — and the most forgotten.</div>
+
+            <div id="dialogue-moment-1" style="display:none;flex-direction:column;align-items:center;gap:0.8rem;width:100%;">
+                <div class="dialogue-line luc" id="dm1-luc-line">&ldquo;You asked to be free.&rdquo;</div>
+                <div class="choice-container" id="dm1-choices">
+                    <div class="choice-prompt">How do you respond?</div>
+                    <button class="choice-btn resistance-btn" data-choice="resistance">I didn&rsquo;t ask for this kind of freedom.</button>
+                    <button class="choice-btn reflection-btn" data-choice="reflection">Was I ever truly free before this?</button>
+                    <button class="choice-btn surrender-btn" data-choice="surrender">Then I will learn to live with it.</button>
+                </div>
+                <div class="dialogue-line luc" id="dm1-luc-response" style="display:none;"></div>
+            </div>
+
+            <div class="narrative-line" data-index="7">She drifted through Paris, through New Orleans, through London.</div>
+            <div class="narrative-line" data-index="8">She stole a notebook. She stole a leather jacket. She stole moments.</div>
+            <div class="narrative-line" data-index="9">Luc appeared at the edges of her existence — never summoned, never absent for long.</div>
+
+            <div id="dialogue-moment-2" style="display:none;flex-direction:column;align-items:center;gap:0.8rem;width:100%;">
+                <div class="dialogue-line luc" id="dm2-luc-line">&ldquo;You confuse being unseen with being unloved.&rdquo;</div>
+                <div class="choice-container" id="dm2-choices">
+                    <div class="choice-prompt">How do you respond?</div>
+                    <button class="choice-btn resistance-btn" data-choice="resistance">You don&rsquo;t get to define what I feel.</button>
+                    <button class="choice-btn reflection-btn" data-choice="reflection">Is there a difference, after all this time?</button>
+                    <button class="choice-btn surrender-btn" data-choice="surrender">Then tell me — have you ever loved what you&rsquo;ve seen?</button>
+                </div>
+                <div class="dialogue-line luc" id="dm2-luc-response" style="display:none;"></div>
+            </div>
+
+            <div class="narrative-line" data-index="10">The isolation did not soften. But something in her did.</div>
+            <div class="narrative-line emphasis" data-index="11">She began to understand: Luc was the only constant witness to her existence.</div>
+            <div class="narrative-line" data-index="12">And then, in a bookshop in New York, three hundred years later — everything changed.</div>
+            <div class="continue-hint" id="hint-act3">click or press any key to continue</div>
+        </div>
+
+        <!-- ACT IV — THE POSSIBILITY -->
+        <div class="phase" id="phase-act4">
+            <div class="dialogue-line luc" data-index="0">&ldquo;I can let them remember you.&rdquo;</div>
+            <div class="dialogue-line addie" data-index="1">&ldquo;For how long?&rdquo;</div>
+            <div class="dialogue-line luc luc-warm" data-index="2">&ldquo;Long enough to know what it feels like to be held by the world.&rdquo;</div>
+            <div class="dialogue-line addie" data-index="3">&ldquo;And the cost?&rdquo;</div>
+            <div class="dialogue-line luc luc-intimate" data-index="4">&ldquo;The same as always. Everything that forgets you — including this moment, when it passes.&rdquo;</div>
+            <div class="dialogue-line addie" data-index="5">&ldquo;Then let them remember.&rdquo;</div>
+            <div class="resolution-text" id="resolution-text">Her name is spoken. And this time, it stays.</div>
+        </div>
+
+        <!-- ACT V — CONTRADICTION -->
+        <div class="phase" id="phase-act5">
+            <div class="contradiction-text glitch-flicker" id="contradiction-text">No record exists for: Addie LaRue.</div>
+            <div class="contradiction-sub" id="contradiction-sub">all references return null</div>
+        </div>
+
+        <!-- EPILOGUE — SEARCH ARCHIVE -->
+        <div class="phase" id="phase-epilogue">
+            <div class="search-label" id="search-label">Who are you?</div>
+            <div class="search-wrapper" id="search-wrapper">
+                <input type="text" class="search-input" id="search-input" placeholder="Search a name…" autocomplete="off" spellcheck="false">
+                <div class="search-result" id="search-result"></div>
+                <div class="sync-line" id="sync-line"></div>
+                <div class="museum-link" id="museum-link">▸ Enter the Memory Museum</div>
+            </div>
+        </div>
+
+        <!-- ═══════════ MEMORY MUSEUM ═══════════ -->
+        <div id="museum-phase">
+            <div class="museum-title">MEMORY MUSEUM</div>
+            <div class="museum-subtitle">artifacts recovered from three hundred years of invisibility</div>
+            <div id="museum-grid"></div>
+            <div class="museum-link" id="return-from-museum" style="opacity:0.55;cursor:pointer;">▸ Return to Search</div>
+        </div>
+
+    </div>
+
+    <!-- ═══════════ ARTIFACT DETAIL OVERLAY ═══════════ -->
+    <div id="artifact-detail-overlay">
+        <div id="artifact-detail-card">
+            <div class="detail-emoji" id="detail-emoji"></div>
+            <div class="detail-title" id="detail-title"></div>
+            <div class="detail-creator" id="detail-creator"></div>
+            <div class="detail-description" id="detail-description"></div>
+            <div class="close-detail" id="close-detail">Close</div>
+        </div>
+    </div>
+         <div id="scrapbook-frame">
+        <img src="frame.png" alt="Memory scrapbook frame">
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
